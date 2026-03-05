@@ -115,10 +115,41 @@
   position:relative;
   z-index:2;
 }
+.hero-image{
+  position:relative;
+  background-image:url("logo.JPG");
+  background-size:cover;
+  background-position:center;
+  padding:120px 20px;
+  border-radius:20px;
+  margin-top:20px;
+}
 
+.hero-image::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  border-radius:20px;
+}
+
+.hero-inner{
+  position:relative;
+  z-index:2;
+  color:white;
+}
     .hero{
-      text-align:center;
-      padding:44px 0 16px;
+     <section class="hero hero-image">
+  <div class="hero-inner">
+    <h2>מתנה מיוחדת שמרגישה “בול”</h2>
+
+    <p>
+      שולחים תמונה/רעיון — ואנחנו דואגים להדפסה איכותית ומדויקת 💜
+    </p>
+
+    <a class="btn" id="waMain" href="#" target="_blank">להזמנה בוואטסאפ</a>
+  </div>
+</section>
     }
 
     .hero h2{
