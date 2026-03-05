@@ -3,115 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blocketa - מתנות מודפסות בהתאמה אישית</title>
+  <title>Blocketa - מתנות מודפסות</title>
 
   <style>
+    :root{
+      --brand:#7a3cff;
+      --bg:#fafafa;
+      --card:#ffffff;
+      --text:#222;
+      --muted:#666;
+      --shadow:0 10px 22px rgba(0,0,0,0.08);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+
     body{
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       direction: rtl;
       margin:0;
-      background:#fafafa;
-      color:#222;
+      background:var(--bg);
+      color:var(--text);
     }
 
     header{
-      background:#7a3cff;
+      background:linear-gradient(135deg, rgba(122,60,255,1), rgba(122,60,255,0.85));
       color:white;
-      padding:30px 16px;
+      padding:34px 16px 28px;
       text-align:center;
     }
+
+    header h1{ margin:0 0 6px; font-size:34px; }
+    header p{ margin:0; opacity:0.95; }
 
     nav{
       background:#f1f1f1;
-      padding:14px 12px;
+      padding:12px 10px;
       text-align:center;
       position: sticky;
       top: 0;
-      z-index: 5;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
 
     nav a{
-      margin:10px;
+      margin:10px 12px;
       text-decoration:none;
-      font-weight:bold;
+      font-weight:800;
       color:#333;
-      display: inline-block;
+      display:inline-block;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 16px;
     }
 
     .hero{
       text-align:center;
-      padding:56px 16px 40px;
-      max-width: 900px;
-      margin: 0 auto;
+      padding:44px 0 16px;
+    }
+
+    .hero h2{
+      margin:0 0 10px;
+      font-size:26px;
+    }
+
+    .hero p{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.6;
     }
 
     .btn{
-      background:#7a3cff;
+      background:var(--brand);
       color:white;
       border:none;
-      padding:12px 22px;
-      border-radius:10px;
+      padding:12px 18px;
+      border-radius:14px;
       cursor:pointer;
       font-size:16px;
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       text-decoration:none;
-      font-weight: 700;
+      font-weight:900;
+      box-shadow: 0 8px 18px rgba(122,60,255,0.25);
+    }
+    .btn:hover{ opacity:0.93; }
+
+    .section-title{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:10px;
+      margin:24px 0 12px;
+    }
+    .section-title h3{ margin:0; font-size:20px; }
+    .section-title span{ color:var(--muted); font-size:14px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+      padding-bottom: 40px;
     }
 
-    .btn:hover{ opacity:0.92; }
-
-    .products{
-      display:flex;
-      flex-wrap: wrap;
-      justify-content:center;
-      gap:18px;
-      padding:20px 16px 50px;
-      max-width: 1000px;
-      margin: 0 auto;
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px){
+      .grid{ grid-template-columns: 1fr; }
+      header h1{ font-size:30px; }
     }
 
     .card{
-      background:white;
-      padding:18px;
-      border-radius:14px;
-      box-shadow:0 8px 18px rgba(0,0,0,0.08);
-      width:260px;
-      text-align:center;
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 100%;
     }
 
-    .card .img{
-      width:100%;
-      height:160px;
-      border-radius:12px;
-      background: linear-gradient(135deg, rgba(122,60,255,0.12), rgba(122,60,255,0.03));
+    .img{
+      height:180px;
+      background: radial-gradient(circle at 20% 20%, rgba(122,60,255,0.22), rgba(122,60,255,0.06)),
+                  linear-gradient(135deg, rgba(255,255,255,0.0), rgba(122,60,255,0.05));
       display:flex;
       align-items:center;
       justify-content:center;
-      font-weight:700;
       color:#5a2bd1;
-      margin-bottom: 12px;
+      font-weight:900;
+      font-size:16px;
+      padding:12px;
+      text-align:center;
+    }
+
+    .content{
+      padding:16px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+
+    .name{
+      margin:0;
+      font-size:18px;
+      font-weight:900;
+    }
+
+    .desc{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:14px;
+      min-height: 44px;
+    }
+
+    .meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding-top:2px;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      border:1px solid rgba(0,0,0,0.08);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:#333;
+      background:#fff;
+    }
+
+    .price{
+      font-size:18px;
+      font-weight:900;
+      color:#1f1f1f;
+    }
+
+    .card .actions{
+      padding:0 16px 16px;
+    }
+
+    .btn-secondary{
+      width:100%;
+      background:#25D366;
+      box-shadow: 0 10px 22px rgba(37,211,102,0.25);
     }
 
     footer{
-      text-align:center;
-      padding:18px 12px;
+      margin-top: 10px;
       background:#eee;
+      padding:18px 12px;
+      text-align:center;
+      color:#444;
     }
 
-    /* כפתור וואטסאפ צף */
+    /* וואטסאפ צף */
     .wa-float{
       position: fixed;
       left: 16px;
       bottom: 16px;
-      z-index: 20;
+      z-index: 50;
       background: #25D366;
       color: white;
       text-decoration: none;
       padding: 12px 14px;
       border-radius: 999px;
-      font-weight: 800;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      display: flex;
+      font-weight: 900;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.22);
+      display: inline-flex;
       align-items: center;
       gap: 10px;
     }
@@ -121,7 +230,7 @@
       height:10px;
       border-radius:50%;
       background:white;
-      opacity:0.9;
+      opacity:0.92;
     }
   </style>
 </head>
@@ -130,65 +239,144 @@
 
 <header>
   <h1>Blocketa</h1>
-  <p>ספלים | בלוקי עץ | לוחות עץ – בהדפסה אישית</p>
+  <p>ספלים | בלוקי עץ | לוחות עץ — הדפסה אישית לפי תמונה/כיתוב</p>
 </header>
 
 <nav>
-  <a href="#">בית</a>
+  <a href="#home">בית</a>
   <a href="#products">מוצרים</a>
   <a href="#contact">צור קשר</a>
 </nav>
 
-<section class="hero">
-  <h2>מתנה מיוחדת שמרגישה “בול”</h2>
-  <p>שולחים תמונה/רעיון – ואני דואגת להפוך אותו למוצר מושלם 💜</p>
+<main class="wrap" id="home">
+  <section class="hero">
+    <h2>מתנה מיוחדת שמרגישה “בול”</h2>
+    <p>
+      שולחים תמונה/רעיון — ואני דואגת להדפסה איכותית ומדויקת 💜<br/>
+      לחצי להזמנה, ותיפתח הודעה מוכנה בוואטסאפ.
+    </p>
 
-  <!-- כפתור וואטסאפ ראשי -->
-  <a class="btn" id="waMain" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
-</section>
+    <a class="btn" id="waMain" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
+  </section>
 
-<section class="products" id="products">
-  <div class="card">
-    <div class="img">תמונה: ספל</div>
-    <h3>ספלים מודפסים</h3>
-    <p>מתנה אישית עם תמונה/כיתוב</p>
-  </div>
+  <section id="products">
+    <div class="section-title">
+      <h3>המוצרים שלנו</h3>
+      <span>אפשר להתאים עיצוב, צבעים וכיתוב</span>
+    </div>
 
-  <div class="card">
-    <div class="img">תמונה: בלוק עץ</div>
-    <h3>בלוק עץ</h3>
-    <p>הדפסה על בלוק עץ בעיצוב נקי</p>
-  </div>
+    <div class="grid">
 
-  <div class="card">
-    <div class="img">תמונה: לוח עץ</div>
-    <h3>לוחות עץ</h3>
-    <p>מושלם לבית / מתנה / משרד</p>
-  </div>
-</section>
+      <!-- מוצר 1 -->
+      <article class="card"
+        data-name="ספל מודפס"
+        data-size="330 מ״ל"
+        data-price="₪49"
+        data-desc="ספל אישי עם תמונה, משפט או לוגו. מושלם למתנה."
+      >
+        <div class="img">כאן תעלי תמונה של ספל</div>
+        <div class="content">
+          <h4 class="name">ספל מודפס</h4>
+          <p class="desc">ספל אישי עם תמונה, משפט או לוגו. מושלם למתנה.</p>
+          <div class="meta">
+            <span class="pill">גודל: 330 מ״ל</span>
+            <span class="price">₪49</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
+        </div>
+      </article>
+
+      <!-- מוצר 2 -->
+      <article class="card"
+        data-name="בלוק עץ"
+        data-size="10×10 ס״מ"
+        data-price="₪39"
+        data-desc="הדפסה איכותית על בלוק עץ. מתאים לשולחן/מדף."
+      >
+        <div class="img">כאן תעלי תמונה של בלוק עץ</div>
+        <div class="content">
+          <h4 class="name">בלוק עץ</h4>
+          <p class="desc">הדפסה איכותית על בלוק עץ. מתאים לשולחן/מדף.</p>
+          <div class="meta">
+            <span class="pill">גודל: 10×10 ס״מ</span>
+            <span class="price">₪39</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
+        </div>
+      </article>
+
+      <!-- מוצר 3 -->
+      <article class="card"
+        data-name="לוח עץ"
+        data-size="20×30 ס״מ"
+        data-price="₪89"
+        data-desc="לוח עץ עם הדפסה מותאמת אישית — לבית, משרד או מתנה."
+      >
+        <div class="img">כאן תעלי תמונה של לוח עץ</div>
+        <div class="content">
+          <h4 class="name">לוח עץ</h4>
+          <p class="desc">לוח עץ עם הדפסה מותאמת אישית — לבית, משרד או מתנה.</p>
+          <div class="meta">
+            <span class="pill">גודל: 20×30 ס״מ</span>
+            <span class="price">₪89</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</main>
 
 <footer id="contact">
-  <p>© Blocketa</p>
+  <div class="wrap">
+    <p style="margin:0 0 6px;"><b>Blocketa</b> — להזמנות והתייעצות: בוואטסאפ</p>
+    <p style="margin:0; color:#555;">© Blocketa</p>
+  </div>
 </footer>
 
-<!-- כפתור וואטסאפ צף -->
 <a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener">
   <span class="wa-dot"></span>
   WhatsApp
 </a>
 
 <script>
-  // 1) לשנות כאן את המספר שלך:
+  // לשנות כאן למספר הוואטסאפ שלך (ישראל: 972 ואז בלי 0)
   const phone = "972545309996"; // לדוגמה: 972501234567
 
-  // 2) הודעה מוכנה מראש:
-  const msg = encodeURIComponent("היי Blocketa 😊 אשמח להזמין הדפסה. המוצר: ____ . יש לי תמונה/רעיון לשלוח.");
+  // הודעת ברירת מחדל לכפתור הראשי
+  const baseMsg = encodeURIComponent("היי Blocketa 😊 אשמח להזמין. יש לי תמונה/רעיון לשלוח. אפשר פרטים?");
+  const baseUrl = `https://wa.me/${phone}?text=${baseMsg}`;
 
-  // קישור וואטסאפ (עובד גם מהמחשב וגם מהנייד)
-  const waUrl = `https://wa.me/${phone}?text=${msg}`;
+  document.getElementById("waMain").href = baseUrl;
+  document.getElementById("waFloat").href = baseUrl;
 
-  document.getElementById("waMain").href = waUrl;
-  document.getElementById("waFloat").href = waUrl;
+  // לכל מוצר – מייצרים הודעה אוטומטית עם פרטי המוצר
+  document.querySelectorAll(".card").forEach(card => {
+    const name = card.dataset.name || "";
+    const size = card.dataset.size || "";
+    const price = card.dataset.price || "";
+    const desc = card.dataset.desc || "";
+
+    const msg = encodeURIComponent(
+      `היי Blocketa 😊 אני רוצה להזמין:\n` +
+      `מוצר: ${name}\n` +
+      `גודל: ${size}\n` +
+      `מחיר: ${price}\n` +
+      `הערות: \n\n` +
+      `יש לי תמונה/רעיון לשלוח.`
+    );
+
+    const url = `https://wa.me/${phone}?text=${msg}`;
+    const btn = card.querySelector(".waProduct");
+    if(btn) btn.href = url;
+  });
 </script>
 
 </body>
