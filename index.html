@@ -7,6 +7,12 @@
 
   <style>
     html { scroll-behavior: smooth; }
+    .img{
+  width:100%;
+  height:180px;
+  object-fit: cover;
+  display:block;
+    }
     :root{
       --brand:#7a3cff;
       --bg:#fafafa;
@@ -292,18 +298,32 @@
       <!-- מוצר 2 -->
       <article class="card"
         data-name="בלוק עץ"
-        data-size="9×14 ס״מ"
-        data-price="₪20"
         data-desc="הדפסה איכותית על בלוק עץ. מתאים לשולחן/מדף."
       >
         <div class="img">כאן תעלי תמונה של בלוק עץ</div>
         <div class="content">
           <h4 class="name">בלוק עץ</h4>
           <p class="desc">הדפסה איכותית על בלוק עץ. מתאים לשולחן/מדף.</p>
-          <div class="meta">
-            <span class="pill">גודל: 14×9 ס״מ</span>
-            <span class="price">₪20</span>
-          </div>
+          <div class="option-row">
+
+  <div class="option">
+    <label style="font-size:13px; font-weight:bold;">בחר גודל</label>
+
+    <select class="select js-size">
+      <option value="9×14" data-price="20">9×14 ס״מ - ₪20</option>
+      <option value="10×10" data-price="18">10×10 ס״מ - ₪18</option>
+      <option value="15×15" data-price="25">15×15 ס״מ - ₪25</option>
+      <option value="14.5×20" data-price="35">14.5×20 ס״מ - ₪35</option>
+    </select>
+
+  </div>
+
+</div>
+
+<div class="meta" style="margin-top:10px;">
+  <span class="pill js-size-pill">גודל: 9×14</span>
+  <span class="price js-price">₪20</span>
+</div>
         </div>
         <div class="actions">
           <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
@@ -378,6 +398,31 @@
     const btn = card.querySelector(".waProduct");
     if(btn) btn.href = url;
   });
+  // --- החלפת תמונה לפי הגודל שנבחר (לבלוק עץ) ---
+const blockSizeToImage = {
+  "9×14": "block-9x14.jpg",
+  "10×10": "block-10x10.jpg",
+  "15×15": "block-15x15.jpg",
+  "14.5×20": "block-14.5x20.jpg"
+};
+
+document.querySelectorAll(".card").forEach(card => {
+  // נרוץ רק על כרטיסים שיש בהם בחירת גודל + תמונה
+  const sizeSel = card.querySelector(".js-size");
+  const imgEl = card.querySelector(".js-img");
+  if(!sizeSel || !imgEl) return;
+
+  function updateImage(){
+    const chosenSize = sizeSel.value;
+    const filename = blockSizeToImage[chosenSize];
+    if(filename){
+      imgEl.src = filename;
+    }
+  }
+
+  sizeSel.addEventListener("change", updateImage);
+  updateImage(); // אתחול
+});
 </script>
 
 </body>
