@@ -369,9 +369,7 @@
 
               <select class="select js-size">
                 <option value="9×14" data-price="20">9×14 ס״מ</option>
-                <option value="10×10" data-price="20">10×10 ס״מ</option>
                 <option value="15×15" data-price="25">15×15 ס״מ</option>
-                <option value="14.5×20" data-price="25">14.5×20 ס״מ</option>
               </select>
             </div>
           </div>
@@ -441,9 +439,7 @@
   // --- בלוק עץ: החלפת תמונה לפי גודל ---
   const blockSizeToImage = {
     "9×14": "block-9x14.jpg",
-    "10×10": "block-10x10.jpg",
     "15×15": "block-15x15.jpg",
-    "14.5×20": "block-14.5x20.jpg"
   };
 
   document.querySelectorAll(".card").forEach(card => {
@@ -498,7 +494,7 @@
 
     function updateMugWhatsApp(styleLabel){
       const size = mugCard.dataset.size || "330 מ״ל";
-      const price = "₪49";
+      const price = "₪30";
       const msg = encodeURIComponent(
         `היי Blocketa 😊 אני רוצה להזמין:\n` +
         `מוצר: ספל מודפס\n` +
