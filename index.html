@@ -7,12 +7,7 @@
 
   <style>
     html { scroll-behavior: smooth; }
-    .img{
-  width:100%;
-  height:180px;
-  object-fit: cover;
-  display:block;
-    }
+
     :root{
       --brand:#7a3cff;
       --bg:#fafafa;
@@ -136,18 +131,12 @@
       min-height: 100%;
     }
 
+    /* ✅ זה עכשיו מתאים ל-IMG אמיתי */
     .img{
+      width:100%;
       height:180px;
-      background: radial-gradient(circle at 20% 20%, rgba(122,60,255,0.22), rgba(122,60,255,0.06)),
-                  linear-gradient(135deg, rgba(255,255,255,0.0), rgba(122,60,255,0.05));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#5a2bd1;
-      font-weight:900;
-      font-size:16px;
-      padding:12px;
-      text-align:center;
+      object-fit: cover;
+      display:block;
     }
 
     .content{
@@ -239,6 +228,51 @@
       background:white;
       opacity:0.92;
     }
+
+    /* ✅ עיצוב ל-dropdownים */
+    .option-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .option{
+      flex:1;
+      min-width: 160px;
+    }
+    .select{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,0.12);
+      background:#fff;
+      font-weight:700;
+    }
+
+    /* ✅ עיצוב לתמונות דוגמאות בספל */
+    .thumbs{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .thumb{
+      border:1px solid rgba(0,0,0,0.12);
+      background:#fff;
+      border-radius:12px;
+      padding:6px;
+      cursor:pointer;
+    }
+    .thumb img{
+      width:64px;
+      height:64px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+    }
+    .thumb.active{
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(122,60,255,0.15);
+    }
   </style>
 </head>
 
@@ -274,78 +308,104 @@
 
     <div class="grid">
 
-      <!-- מוצר 1 -->
+      <!-- מוצר 1: ספל -->
       <article class="card"
         data-name="ספל מודפס"
         data-size="330 מ״ל"
-        data-price="₪25"
         data-desc="ספל אישי עם תמונה, משפט או לוגו. מושלם למתנה."
       >
-        <div class="img">כאן תעלי תמונה של ספל</div>
+        <!-- תמונה ראשית שמתחלפת -->
+        <img class="img js-mug-main" src="whitemug330.png" alt="ספל מודפס">
+
         <div class="content">
           <h4 class="name">ספל מודפס</h4>
           <p class="desc">ספל אישי עם תמונה, משפט או לוגו. מושלם למתנה.</p>
-          <div class="meta">
+
+          <div class="option-row" style="margin-top:8px;">
+            <div class="option" style="min-width:100%;">
+              <label style="font-size:13px; font-weight:bold;">דוגמאות עיצוב (לחצי כדי להחליף)</label>
+
+              <div class="thumbs">
+                <button class="thumb js-mug-thumb" type="button" data-style="תמונה זוגית" data-img="whitemug330.png">
+                  <img src="whitemug330.png" alt="תמונה זוגית">
+                </button>
+
+                <button class="thumb js-mug-thumb" type="button" data-style="ברכה" data-img="blessmug.png">
+                  <img src="blessmug.png" alt="ברכה">
+                </button>
+
+                <button class="thumb js-mug-thumb" type="button" data-style="איור זוג" data-img="cartoonmug.png">
+                  <img src="cartoonmug.png" alt="איור זוג">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="meta" style="margin-top:10px;">
             <span class="pill">גודל: 330 מ״ל</span>
-            <span class="price">₪25</span>
+            <span class="price">₪49</span>
           </div>
         </div>
+
         <div class="actions">
           <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
         </div>
       </article>
 
-      <!-- מוצר 2 -->
+      <!-- מוצר 2: בלוק עץ עם גדלים -->
       <article class="card"
         data-name="בלוק עץ"
         data-desc="הדפסה איכותית על בלוק עץ. מתאים לשולחן/מדף."
       >
-        <div class="img js-img" src="woodblock9x14.png"</div>
+        <img class="img js-img" src="woodblock9x14.png" alt="בלוק עץ">
+
         <div class="content">
           <h4 class="name">בלוק עץ</h4>
           <p class="desc">הדפסה איכותית על בלוק עץ. מתאים לשולחן/מדף.</p>
+
           <div class="option-row">
+            <div class="option">
+              <label style="font-size:13px; font-weight:bold;">בחר גודל</label>
 
-  <div class="option">
-    <label style="font-size:13px; font-weight:bold;">בחר גודל</label>
+              <select class="select js-size">
+                <option value="9×14" data-price="20">9×14 ס״מ</option>
+                <option value="10×10" data-price="20">10×10 ס״מ</option>
+                <option value="15×15" data-price="25">15×15 ס״מ</option>
+                <option value="14.5×20" data-price="25">14.5×20 ס״מ</option>
+              </select>
+            </div>
+          </div>
 
-    <select class="select js-size">
-      <option value="9×14" data-price="20">9×14 ס״מ - ₪20</option>
-      <option value="10×10" data-price="18">10×10 ס״מ - ₪20</option>
-      <option value="15×15" data-price="25">15×15 ס״מ - ₪25</option>
-      <option value="14.5×20" data-price="35">14.5×20 ס״מ - ₪25</option>
-    </select>
-
-  </div>
-
-</div>
-
-<div class="meta" style="margin-top:10px;">
-  <span class="pill js-size-pill">גודל: 9×14</span>
-  <span class="price js-price">₪20</span>
-</div>
+          <div class="meta" style="margin-top:10px;">
+            <span class="pill js-size-pill">גודל: 9×14</span>
+            <span class="price js-price">₪20</span>
+          </div>
         </div>
+
         <div class="actions">
           <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
         </div>
       </article>
 
-      <!-- מוצר 3 -->
+      <!-- מוצר 3: לוח עץ רגיל -->
       <article class="card"
         data-name="לוח עץ"
         data-size="10×10 ס״מ"
         data-price="₪20"
         data-desc="לוח עץ עם הדפסה מותאמת אישית — לבית, משרד או מתנה."
       >
-        <div class="img js-img" src="woodblock10x10.png" </div>
+        <img class="img js-img" src="woodblock10x10.png" alt="לוח עץ">
+
         <div class="content">
           <h4 class="name">לוח עץ</h4>
           <p class="desc">לוח עץ עם הדפסה מותאמת אישית — לבית, משרד או מתנה.</p>
+
           <div class="meta">
             <span class="pill">גודל: 10×10 ס״מ</span>
             <span class="price">₪20</span>
           </div>
         </div>
+
         <div class="actions">
           <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
         </div>
@@ -368,8 +428,8 @@
 </a>
 
 <script>
-  // לשנות כאן למספר הוואטסאפ שלך (ישראל: 972 ואז בלי 0)
-  const phone = "972545309996"; // לדוגמה: 972501234567
+  // מספר הוואטסאפ שלך (ישראל: 972 ואז בלי 0)
+  const phone = "972545309996";
 
   // הודעת ברירת מחדל לכפתור הראשי
   const baseMsg = encodeURIComponent("היי Blocketa 😊 אשמח להזמין. יש לי תמונה/רעיון לשלוח. אפשר פרטים?");
@@ -378,51 +438,118 @@
   document.getElementById("waMain").href = baseUrl;
   document.getElementById("waFloat").href = baseUrl;
 
-  // לכל מוצר – מייצרים הודעה אוטומטית עם פרטי המוצר
+  // --- בלוק עץ: החלפת תמונה לפי גודל ---
+  const blockSizeToImage = {
+    "9×14": "block-9x14.jpg",
+    "10×10": "block-10x10.jpg",
+    "15×15": "block-15x15.jpg",
+    "14.5×20": "block-14.5x20.jpg"
+  };
+
   document.querySelectorAll(".card").forEach(card => {
+    const sizeSel = card.querySelector(".js-size");
+    const imgEl = card.querySelector(".js-img");
+    const priceEl = card.querySelector(".js-price");
+    const sizePill = card.querySelector(".js-size-pill");
+    const btn = card.querySelector(".waProduct");
+
+    // רק כרטיס עם select הוא הבלוק הדינמי
+    if(!sizeSel || !imgEl || !priceEl || !sizePill || !btn) return;
+
+    function updateBlock(){
+      const chosenSize = sizeSel.value;
+      const chosenOption = sizeSel.options[sizeSel.selectedIndex];
+      const price = chosenOption.getAttribute("data-price") || "";
+
+      // מחיר וטקסט
+      priceEl.textContent = `₪${price}`;
+      sizePill.textContent = `גודל: ${chosenSize}`;
+
+      // תמונה
+      const filename = blockSizeToImage[chosenSize];
+      if(filename) imgEl.src = filename;
+
+      // וואטסאפ
+      const msg = encodeURIComponent(
+        `היי Blocketa 😊 אני רוצה להזמין:\n` +
+        `מוצר: בלוק עץ\n` +
+        `גודל: ${chosenSize}\n` +
+        `מחיר: ₪${price}\n\n` +
+        `יש לי תמונה/רעיון לשלוח.`
+      );
+      btn.href = `https://wa.me/${phone}?text=${msg}`;
+    }
+
+    sizeSel.addEventListener("change", updateBlock);
+    updateBlock();
+  });
+
+  // --- ספל: החלפת דוגמאות עיצוב + וואטסאפ ---
+  const mugCard = [...document.querySelectorAll(".card")].find(c => c.dataset.name === "ספל מודפס");
+  if(mugCard){
+    const mainImg = mugCard.querySelector(".js-mug-main");
+    const thumbs = mugCard.querySelectorAll(".js-mug-thumb");
+    const btn = mugCard.querySelector(".waProduct");
+
+    function setActiveThumb(el){
+      thumbs.forEach(t => t.classList.remove("active"));
+      el.classList.add("active");
+    }
+
+    function updateMugWhatsApp(styleLabel){
+      const size = mugCard.dataset.size || "330 מ״ל";
+      const price = "₪49";
+      const msg = encodeURIComponent(
+        `היי Blocketa 😊 אני רוצה להזמין:\n` +
+        `מוצר: ספל מודפס\n` +
+        `גודל: ${size}\n` +
+        `מחיר: ${price}\n` +
+        `דוגמה שבחרתי: ${styleLabel}\n\n` +
+        `יש לי תמונה/רעיון לשלוח.`
+      );
+      if(btn) btn.href = `https://wa.me/${phone}?text=${msg}`;
+    }
+
+    if(thumbs.length){
+      setActiveThumb(thumbs[0]);
+      updateMugWhatsApp(thumbs[0].dataset.style || "דוגמה 1");
+    }
+
+    thumbs.forEach(t => {
+      t.addEventListener("click", () => {
+        const img = t.dataset.img;
+        const styleLabel = t.dataset.style || "דוגמה";
+        if(mainImg && img) mainImg.src = img;
+        setActiveThumb(t);
+        updateMugWhatsApp(styleLabel);
+      });
+    });
+  }
+
+  // --- ברירת מחדל לוואטסאפ למוצרים "רגילים" (לוח עץ) ---
+  document.querySelectorAll(".card").forEach(card => {
+    // אם יש select - כבר טיפלנו בזה למעלה
+    if(card.querySelector(".js-size")) return;
+
+    // אם זה הספל - כבר טיפלנו בזה למעלה
+    if(card.dataset.name === "ספל מודפס") return;
+
     const name = card.dataset.name || "";
     const size = card.dataset.size || "";
     const price = card.dataset.price || "";
-    const desc = card.dataset.desc || "";
+
+    const btn = card.querySelector(".waProduct");
+    if(!btn) return;
 
     const msg = encodeURIComponent(
       `היי Blocketa 😊 אני רוצה להזמין:\n` +
       `מוצר: ${name}\n` +
       `גודל: ${size}\n` +
-      `מחיר: ${price}\n` +
-      `הערות: \n\n` +
+      `מחיר: ${price}\n\n` +
       `יש לי תמונה/רעיון לשלוח.`
     );
-
-    const url = `https://wa.me/${phone}?text=${msg}`;
-    const btn = card.querySelector(".waProduct");
-    if(btn) btn.href = url;
+    btn.href = `https://wa.me/${phone}?text=${msg}`;
   });
-  // --- החלפת תמונה לפי הגודל שנבחר (לבלוק עץ) ---
-const blockSizeToImage = {
-  "9×14": "block-9x14.jpg",
-  "10×10": "block-10x10.jpg",
-  "15×15": "block-15x15.jpg",
-  "14.5×20": "block-14.5x20.jpg"
-};
-
-document.querySelectorAll(".card").forEach(card => {
-  // נרוץ רק על כרטיסים שיש בהם בחירת גודל + תמונה
-  const sizeSel = card.querySelector(".js-size");
-  const imgEl = card.querySelector(".js-img");
-  if(!sizeSel || !imgEl) return;
-
-  function updateImage(){
-    const chosenSize = sizeSel.value;
-    const filename = blockSizeToImage[chosenSize];
-    if(filename){
-      imgEl.src = filename;
-    }
-  }
-
-  sizeSel.addEventListener("change", updateImage);
-  updateImage(); // אתחול
-});
 </script>
 
 </body>
