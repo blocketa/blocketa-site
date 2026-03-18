@@ -380,6 +380,42 @@
       border-color: var(--brand);
       box-shadow: 0 0 0 3px rgba(122,60,255,0.15);
     }
+    .info-section{
+  margin: 10px 0 40px;
+}
+
+.info-cards{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:16px;
+}
+
+.info-card{
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+}
+
+.info-card h4{
+  margin:0 0 8px;
+  font-size:17px;
+  color:#3f2a7a;
+}
+
+.info-card p{
+  margin:0;
+  color:#555;
+  line-height:1.6;
+  font-size:14px;
+}
+
+@media (max-width: 900px){
+  .info-cards{
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
@@ -608,6 +644,30 @@
   </section>
 </main>
 
+  <section class="info-section">
+  <div class="section-title">
+    <h3>חשוב לדעת</h3>
+    <span>פרטים לגבי הזמנות, משלוחים ומארזים</span>
+  </div>
+
+  <div class="info-cards">
+    <div class="info-card">
+      <h4>איסוף עצמי</h4>
+      <p>ניתן לבצע איסוף עצמי בתיאום מראש.</p>
+    </div>
+
+    <div class="info-card">
+      <h4>משלוחים</h4>
+      <p>משלוח זמין באזור חיפה והקריות בתוספת תשלום, בהתאם למרחק.</p>
+    </div>
+
+    <div class="info-card">
+      <h4>מחירי מארזים</h4>
+      <p>מחירי המארזים עשויים להשתנות בהתאם לתוספות ולתכולה שנבחרת לכל מארז.</p>
+    </div>
+  </div>
+</section> 
+  
 <footer id="contact">
   <div class="wrap">
     <p style="margin:0 0 6px;"><b>Blocketa</b> — להזמנות והתייעצות: בוואטסאפ</p>
