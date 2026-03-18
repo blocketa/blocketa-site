@@ -710,6 +710,35 @@
         <h4>מחירי מארזים</h4>
         <p>מחירי המארזים עשויים להשתנות בהתאם לתוספות ולתכולה.</p>
       </div>
+      .info-card{
+  position:relative;
+  border-radius:18px;
+  padding:20px;
+  overflow:hidden;
+  color:white;
+
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* שכבת כהות מעל התמונה */
+.info-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5); /* 👈 זה הסוד */
+}
+
+/* שהטקסט יהיה מעל */
+.info-card h4,
+.info-card p{
+  position:relative;
+  z-index:2;
+}
 
     </div> <!-- 👈 סוגרים info-cards -->
 
