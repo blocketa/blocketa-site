@@ -647,7 +647,7 @@
         data-name="תעודת לידה מעוצבת"
         data-desc="תעודת לידה מעוצבת בהתאמה אישית לחדר ילדים או כמתנה."
       >
-        <img class="img js-birth-img" src="girl.png" alt="תעודת לידה">
+        <img class="img birth-preview js-birth-img" src="girl.png" alt="תעודת לידה">
 
         <div class="content">
           <h4 class="name">תעודת לידה מעוצבת</h4>
@@ -918,6 +918,11 @@
     sizeSel.addEventListener("change", updateBirth);
     updateBirth();
   }
+  .birth-preview{
+  object-fit: contain;
+  background:#fff;
+  padding:10px;
+}
 </script>
 
 </body>
