@@ -416,6 +416,47 @@
     grid-template-columns: 1fr;
   }
 }
+    .info-card{
+  position:relative;
+  border-radius:18px;
+  padding:20px;
+  overflow:hidden;
+  color:white;
+  min-height:120px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  background-size:cover;
+  background-position:center;
+}
+
+/* שכבת כהות מעל התמונה */
+.info-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
+
+/* שהתוכן יהיה מעל השכבה */
+.info-card h4,
+.info-card p{
+  position:relative;
+  z-index:2;
+}
+
+.info-card h4{
+  margin:0 0 6px;
+  font-size:17px;
+}
+
+.info-card p{
+  margin:0;
+  font-size:14px;
+  line-height:1.5;
+}
   </style>
 </head>
 
@@ -653,22 +694,20 @@
       <span>פרטים לגבי הזמנות, משלוחים ומארזים</span>
     </div>
 
-    <div class="info-cards">
-      <div class="info-card">
-        <h4>איסוף עצמי</h4>
-        <p>ניתן לבצע איסוף עצמי מחיפה בתיאום מראש.</p>
-      </div>
+   <div class="info-card" style="background-image:url('pickup.jpg')">
+  <h4>איסוף עצמי</h4>
+  <p>ניתן לבצע איסוף עצמי בתיאום מראש.</p>
+</div>
 
-      <div class="info-card">
-        <h4>משלוחים</h4>
-        <p>משלוח זמין באזור חיפה והקריות בתוספת תשלום בהתאם למרחק.</p>
-      </div>
+      <div class="info-card" style="background-image:url('delivery.jpg')">
+  <h4>משלוחים</h4>
+  <p>משלוח זמין באזור חיפה והקריות בתוספת תשלום בהתאם למרחק.</p>
+</div>
 
-      <div class="info-card">
-        <h4>מחירי מארזים</h4>
-        <p>מחירי המארזים עשויים להשתנות בהתאם לתוספות ולתכולה.</p>
-      </div>
-    </div>
+      <div class="info-card" style="background-image:url('packages.jpg')">
+  <h4>מחירי מארזים</h4>
+  <p>מחירי המארזים עשויים להשתנות בהתאם לתוספות ולתכולה.</p>
+</div>
 
   </div> <!-- 👈 סוגרים כאן -->
   
