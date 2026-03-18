@@ -527,7 +527,82 @@
           <a class="btn btn-secondary waProduct" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
         </div>
       </article>
+<!-- מוצר 4: מארזים -->
+<article class="card"
+  data-name="מארז מתנה"
+  data-desc="מארזי מתנה בהתאמה אישית לאירועים, ימי הולדת, זוגות ועוד."
+>
+  <img class="img js-package-img" src="package-small.jpg" alt="מארז מתנה">
 
+  <div class="content">
+    <h4 class="name">מארזי מתנה</h4>
+    <p class="desc">
+      מארז מתנה בעיצוב אישי שאפשר להתאים לפי התקציב והסגנון הרצוי.
+    </p>
+
+    <p class="desc" style="min-height:auto;">
+      יכול לכלול למשל: ספל מודפס, בלוק עץ, שוקולדים, נרות, יין קטן, גרביים, ברכה אישית ועוד.
+    </p>
+
+    <div class="option-row">
+      <div class="option">
+        <label style="font-size:13px; font-weight:bold;">בחר גודל מארז</label>
+        <select class="select js-package-size">
+          <option value="קטן" data-price="79">מארז קטן</option>
+          <option value="בינוני" data-price="119">מארז בינוני</option>
+          <option value="גדול" data-price="169">מארז גדול</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="meta" style="margin-top:10px;">
+      <span class="pill js-package-size-pill">גודל: קטן</span>
+      <span class="price js-package-price">₪79</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="btn btn-secondary waPackage" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
+  </div>
+</article>
+
+      <!-- מוצר 5: תעודת לידה -->
+<article class="card"
+  data-name="תעודת לידה מעוצבת"
+  data-desc="תעודת לידה מעוצבת בהתאמה אישית לחדר ילדים או כמתנה."
+>
+  <img class="img js-birth-img" src="birth-small.jpg" alt="תעודת לידה">
+
+  <div class="content">
+    <h4 class="name">תעודת לידה מעוצבת</h4>
+    <p class="desc">
+      תעודת לידה בעיצוב אישי עם פרטי הלידה והאלמנטים שתבחרו.
+    </p>
+
+    <p class="desc" style="min-height:auto;">
+      יכולה לכלול: שם התינוק/ת, תאריך לידה, שעה, משקל, גובה, שם בית חולים, צבעים לבחירה, איורים, כוכבים, קשתות ועוד.
+    </p>
+
+    <div class="option-row">
+      <div class="option">
+        <label style="font-size:13px; font-weight:bold;">בחר גודל</label>
+        <select class="select js-birth-size">
+          <option value="A4" data-price="65">A4</option>
+          <option value="A3" data-price="95">A3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="meta" style="margin-top:10px;">
+      <span class="pill js-birth-size-pill">גודל: A4</span>
+      <span class="price js-birth-price">₪65</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="btn btn-secondary waBirth" href="#" target="_blank" rel="noopener">להזמנה בוואטסאפ</a>
+  </div>
+</article>
     </div>
   </section>
 </main>
@@ -656,6 +731,89 @@
     );
     btn.href = `https://wa.me/${phone}?text=${msg}`;
   });
+
+  // --- מארזים: החלפת תמונה לפי גודל + וואטסאפ ---
+const packageSizeToImage = {
+  "קטן": "package-small.jpg",
+  "בינוני": "package-medium.jpg",
+  "גדול": "package-large.jpg"
+};
+
+const packageCard = [...document.querySelectorAll(".card")].find(c => c.dataset.name === "מארז מתנה");
+if (packageCard) {
+  const sizeSel = packageCard.querySelector(".js-package-size");
+  const imgEl = packageCard.querySelector(".js-package-img");
+  const priceEl = packageCard.querySelector(".js-package-price");
+  const sizePill = packageCard.querySelector(".js-package-size-pill");
+  const btn = packageCard.querySelector(".waPackage");
+
+  function updatePackage() {
+    const chosenSize = sizeSel.value;
+    const chosenOption = sizeSel.options[sizeSel.selectedIndex];
+    const price = chosenOption.getAttribute("data-price") || "";
+
+    priceEl.textContent = `₪${price}`;
+    sizePill.textContent = `גודל: ${chosenSize}`;
+
+    const filename = packageSizeToImage[chosenSize];
+    if (filename) imgEl.src = filename;
+
+    const msg = encodeURIComponent(
+      `היי Blocketa 😊 אני רוצה להזמין:\n` +
+      `מוצר: מארז מתנה\n` +
+      `גודל: ${chosenSize}\n` +
+      `מחיר: ₪${price}\n` +
+      `אשמח לשמוע אילו אפשרויות אפשר לשלב במארז.\n\n` +
+      `יש לי רעיון/סגנון לשלוח.`
+    );
+
+    btn.href = `https://wa.me/${phone}?text=${msg}`;
+  }
+
+  sizeSel.addEventListener("change", updatePackage);
+  updatePackage();
+}
+
+// --- תעודת לידה: החלפת תמונה לפי גודל + וואטסאפ ---
+const birthSizeToImage = {
+  "A4": "birth-small.jpg",
+  "A3": "birth-large.jpg"
+};
+
+const birthCard = [...document.querySelectorAll(".card")].find(c => c.dataset.name === "תעודת לידה מעוצבת");
+if (birthCard) {
+  const sizeSel = birthCard.querySelector(".js-birth-size");
+  const imgEl = birthCard.querySelector(".js-birth-img");
+  const priceEl = birthCard.querySelector(".js-birth-price");
+  const sizePill = birthCard.querySelector(".js-birth-size-pill");
+  const btn = birthCard.querySelector(".waBirth");
+
+  function updateBirth() {
+    const chosenSize = sizeSel.value;
+    const chosenOption = sizeSel.options[sizeSel.selectedIndex];
+    const price = chosenOption.getAttribute("data-price") || "";
+
+    priceEl.textContent = `₪${price}`;
+    sizePill.textContent = `גודל: ${chosenSize}`;
+
+    const filename = birthSizeToImage[chosenSize];
+    if (filename) imgEl.src = filename;
+
+    const msg = encodeURIComponent(
+      `היי Blocketa 😊 אני רוצה להזמין:\n` +
+      `מוצר: תעודת לידה מעוצבת\n` +
+      `גודל: ${chosenSize}\n` +
+      `מחיר: ₪${price}\n` +
+      `אשמח לעיצוב עם פרטי לידה בהתאמה אישית.\n\n` +
+      `יש לי פרטים/סגנון לשלוח.`
+    );
+
+    btn.href = `https://wa.me/${phone}?text=${msg}`;
+  }
+
+  sizeSel.addEventListener("change", updateBirth);
+  updateBirth();
+}
 </script>
 
 </body>
