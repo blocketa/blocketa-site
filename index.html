@@ -665,8 +665,8 @@
             <div class="option">
               <label style="font-size:13px; font-weight:bold;">בחר גודל</label>
               <select class="select js-birth-size">
-                <option value="15x21" data-price="65">קטן</option>
-                <option value="20x30" data-price="95">גדול</option>
+                <option value="קטן" data-price="65">15x21</option>
+                <option value="גדול" data-price="95">20x30</option>
               </select>
             </div>
           </div>
@@ -885,8 +885,8 @@
 
   // תעודת לידה
   const birthSizeToImage = {
-    "קטן": "girl.png",
-    "גדול": "boy.png"
+    "15x21": "girl.png",
+    "20x30": "boy.png"
   };
 
   const birthCard = [...document.querySelectorAll(".card")].find(c => c.dataset.name === "תעודת לידה מעוצבת");
